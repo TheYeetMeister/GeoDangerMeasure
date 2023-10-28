@@ -1,5 +1,13 @@
 import mappingApi
 
+def getRadiusZips() -> list[int]:
+    apikey :str = input("What is your Apikey? :")
+    originZip :str = input("What is the origin of your radius (please respond with a zip)? :")
+    radius :str = input("What is the radius in which you want to collect zips? :")
+    countryCode :str = input("What is the country code of the country where you want to collect zips? :")
+
+    return mappingApi.ZipFetch(apikey).getZipByRadius(originZip, radius, countryCode)
+
 def main():
     output :list[int] = []
 
