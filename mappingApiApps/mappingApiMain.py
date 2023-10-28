@@ -11,7 +11,7 @@ def getRadiusZips() -> list[int]:
 def getCityZips() -> list[int]:
     apikey :str = input("What is your Apikey? :")
     city :str = input("What is the city where you want to collect zips? :")
-    stateCode :str = input("What is the state where you want to collect zips?\n (This is optional you can just input an empty response, please respond with a state abbreviation) :")
+    stateCode :str = input("What is the state where you want to collect zips?\n(This is optional you can just input an empty response, please respond with a state abbreviation) :")
     countryCode :str = input("What is the country code of the country where you want to collect zips? :")
 
     return mappingApi.ZipFetch(apikey).getZipByCity(city, countryCode, stateCode)
