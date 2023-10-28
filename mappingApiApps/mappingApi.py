@@ -44,5 +44,4 @@ class ZipFetch:
             ("unit", "miles")
         )
 
-        zipCodeList :list[int ]= []
-        result :dict = self.getZipResponse(url, params)
+        return [data["code"] for data in self.getZipResponse(url, params)]
