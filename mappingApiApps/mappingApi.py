@@ -11,6 +11,10 @@ class ZipFetch:
         response = requests.get(url, headers=self._headers, params=params)
         responseJson = json.loads(response.text)
         response.close()
+
+        if "error" in response.keys():
+            return []
+
         return responseJson["results"]
 
     def getZipByCity(self, city :str, countryCode :str, stateName :"optionalStr" = "") -> list[int]:
