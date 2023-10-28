@@ -1,12 +1,16 @@
 import mappingApi
 
 def main():
-    print("Would you like to get zip codes by radius, or by city?")
-    choice = input("response with \"radius\" or \"city\"\n").upper()
+    output :str = ""
 
-    if(choice == "RADIUS"):
+    while(not output):
+        print("Would you like to get zip codes by radius, or by city?")
+        choice = input("response with \"radius\" or \"city\"\n").upper()
 
-    elif(choice == "city"):
+        if(choice == "RADIUS"):
+            print(getRadiusZips())
+        elif(choice == "city"):
+            print(getCityZips())
 
     
 
