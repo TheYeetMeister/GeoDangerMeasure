@@ -12,7 +12,7 @@ class ZipFetch:
         responseJson = json.loads(response.text)
         response.close()
 
-        if "error" in response.keys():
+        if "error" in responseJson.keys():
             return []
 
         return responseJson["results"]
