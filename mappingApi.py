@@ -40,4 +40,6 @@ class ZipFetch:
             ("unit", "miles")
         )
 
+        return self.getZipResponse(url, params)
+
 print(ZipFetch("43ef42a0-75af-11ee-b46e-c76fdca57988").getZipByCity("San Francisco", "us")) 
