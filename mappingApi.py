@@ -22,18 +22,18 @@ class ZipFetch:
         headers :dict = {
             "apikey": "43ef42a0-75af-11ee-b46e-c76fdca57988"
         }
-        
-def getZipByCity(city :str, state_name :"optionalStr", country :str) -> list[int]:
-    if(state_name):
-        params = (
-            ("city", city),
-            ("state_name", state_name),
-            ("country", country)
-        )
-    else:
-        params = (
-            ("city", city),
-            ("country", country)
-        )
 
-    
+    def getZipByCity(self, city :str, state_name :"optionalStr", country :str) -> list[int]:
+        if(state_name):
+            params = (
+                ("city", city),
+                ("state_name", state_name),
+                ("country", country)
+            )
+        else:
+            params = (
+                ("city", city),
+                ("country", country)
+            )
+
+        
