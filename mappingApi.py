@@ -15,7 +15,7 @@ headers = {
 
 response = requests.get(url, headers=headers, params=params)
 responseJson = json.loads(response.text)
-print(responseJson["results"])
+print(ZipFetch("43ef42a0-75af-11ee-b46e-c76fdca57988"))
 
 class ZipFetch:
     def __init__(self, apikey :str):
@@ -26,6 +26,7 @@ class ZipFetch:
     def getZipResponse(self, url :str, params :tuple) -> list[int]:
         response = requests.get(url, headers=headers, params=params)
         responseJson = json.loads(response.text)
+        response.close()
         return responseJson["results"]
 
     def getZipByCity(self, city :str, state_name :"optionalStr", country :str) -> list[int]:
