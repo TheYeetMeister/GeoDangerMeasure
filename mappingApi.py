@@ -41,4 +41,6 @@ class ZipFetch:
                 ("country", country)
             )
 
+        return self.getZipResonse(params)
+
         
