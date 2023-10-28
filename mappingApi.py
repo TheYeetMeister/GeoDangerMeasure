@@ -23,6 +23,11 @@ class ZipFetch:
             "apikey": "43ef42a0-75af-11ee-b46e-c76fdca57988"
         }
 
+    def getZipResponse(self, params :tuple) -> list[int]:
+        response = requests.get(url, headers=headers, params=params)
+        responseJson = json.loads(response.text)
+        return responseJson["results"]
+
     def getZipByCity(self, city :str, state_name :"optionalStr", country :str) -> list[int]:
         if(state_name):
             params = (
