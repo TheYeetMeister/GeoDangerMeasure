@@ -13,19 +13,19 @@ class ZipFetch:
         response.close()
         return responseJson["results"]
 
-    def getZipByCity(self, city :str, country :str, state_name :"optionalStr" = "") -> list[int]:
+    def getZipByCity(self, city :str, countryCode :str, stateName :"optionalStr" = "") -> list[int]:
         url :str = "https://app.zipcodebase.com/api/v1/code/city"
 
-        if(state_name):
+        if(stateName):
             params = (
                 ("city", city),
-                ("state_name", state_name),
-                ("country", country)
+                ("state_name", stateName),
+                ("country", countryCode)
             )
         else:
             params = (
                 ("city", city),
-                ("country", country)
+                ("country", countryCode)
             )
 
         return self.getZipResponse(url, params)
