@@ -1,7 +1,7 @@
 import mappingApi
 
 def main():
-    output :str = ""
+    output :list[int] = []
 
     while(not output):
         print("Would you like to get zip codes by radius, or by city?")
