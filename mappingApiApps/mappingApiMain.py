@@ -8,9 +8,11 @@ def main():
         choice = input("response with \"radius\" or \"city\"\n").upper()
 
         if(choice == "RADIUS"):
-            print(getRadiusZips())
+            output = getRadiusZips()
         elif(choice == "city"):
-            print(getCityZips())
+            output = getCityZips()
+        else:
+            print("\nERROR INVALID RESPONSE\n")
 
     
 
