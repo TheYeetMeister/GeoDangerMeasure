@@ -18,4 +18,16 @@ responseJson = json.loads(response.text)
 print(responseJson["results"])
 
 def getZipByCity(city :str, state_name :"optionalStr", country :str) -> list[int]:
+    if(state_name):
+        params = (
+            ("city", city),
+            ("state_name", state_name),
+            ("country", country)
+        )
+    else:
+        params = (
+            ("city", city),
+            ("country", country)
+        )
+
     
