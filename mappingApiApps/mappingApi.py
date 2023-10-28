@@ -8,6 +8,7 @@ class ZipFetch:
         }
 
     def getZipResponse(self, url :str, params :tuple) -> list[int]:
+        '''gets response from api and closes the response'''
         response = requests.get(url, headers=self._headers, params=params)
         responseJson = json.loads(response.text)
         response.close()
@@ -18,6 +19,7 @@ class ZipFetch:
         return responseJson["results"]
 
     def getZipByCity(self, city :str, countryCode :str, stateName :"optionalStr" = "") -> list[int]:
+        '''gets the zip code of a city with a given country, state name is optional'''
         url :str = "https://app.zipcodebase.com/api/v1/code/city"
 
         if(stateName):
@@ -35,6 +37,8 @@ class ZipFetch:
         return self.getZipResponse(url, params)
     
     def getZipByRadius(self, originZipCode :str, radius :str, countryCode :str) -> list[int]:
+        '''fetches a list of zip codes from an origin zip code with a given radius in miles and
+        country code'''
         url :str = "https://app.zipcodebase.com/api/v1/radius"
 
         params = (
@@ -44,4 +48,7 @@ class ZipFetch:
             ("unit", "miles")
         )
 
+        '''little complex but the getZipResonse returns a list of dictionaries with all information including
+        city name, state, etc. this lambda function iterates through the list of dictionaries
+        and appends only the zip codes to this empty list'''
         return [data["code"] for data in self.getZipResponse(url, params)]
