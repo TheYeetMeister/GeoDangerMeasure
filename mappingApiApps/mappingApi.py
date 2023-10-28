@@ -36,7 +36,7 @@ class ZipFetch:
 
         return self.getZipResponse(url, params)
     
-    def getZipByRadius(self, originZipCode :str, radius :str, countryCode :str) -> list[int]:
+    def getZipByRadius(self, originZipCode :str, radius :str, countryCode :str) -> set[str]:
         '''fetches a list of zip codes from an origin zip code with a given radius in miles and
         country code'''
         url :str = "https://app.zipcodebase.com/api/v1/radius"
@@ -51,4 +51,4 @@ class ZipFetch:
         '''little complex but the getZipResonse returns a list of dictionaries with all information including
         city name, state, etc. this lambda function iterates through the list of dictionaries
         and appends only the zip codes to this empty list'''
-        return [data["code"] for data in self.getZipResponse(url, params)]
+        return {data["city"] for data in self.getZipResponse(url, params)}
