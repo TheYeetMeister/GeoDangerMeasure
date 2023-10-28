@@ -26,7 +26,7 @@ def main():
 
         if(choice == "RADIUS"):
             output = getRadiusZips()
-        elif(choice == "city"):
+        elif(choice == "CITY"):
             output = getCityZips()
         
         if (not output):
