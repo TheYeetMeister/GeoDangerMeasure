@@ -29,5 +29,8 @@ class ZipFetch:
             )
 
         return self.getZipResponse(url, params)
+    
+    def getZipByRadius(self, originZipCode :str, radius :str, country_code :str) -> list[int]:
+        
 
 print(ZipFetch("43ef42a0-75af-11ee-b46e-c76fdca57988").getZipByCity("San Francisco", "us")) 
