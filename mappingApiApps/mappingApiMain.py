@@ -32,6 +32,8 @@ def main():
         if (not output):
             print("\nERROR INVALID RESPONSE\n")
 
+    print(output)
+
     
 
 if __name__ == "__main__":
