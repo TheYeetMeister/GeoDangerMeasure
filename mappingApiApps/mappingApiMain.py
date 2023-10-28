@@ -19,7 +19,8 @@ def main():
             output = getRadiusZips()
         elif(choice == "city"):
             output = getCityZips()
-        else:
+        
+        if (not output):
             print("\nERROR INVALID RESPONSE\n")
 
     
