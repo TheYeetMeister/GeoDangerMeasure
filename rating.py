@@ -1,9 +1,21 @@
 import pip._vendor.requests as requests
+from datetime import datetime, timezone
+from bottle import route, run, template, request
 
+
+
+
+my_list = []  #for prediction
+
+
+city = "San%20Francisco"   #should be entered using the search bar 
+
+
+apiKey= "133427a1a3cc422f8271dfdf1e143648"  
 
 # Define the URL for news data
-news_url = "https://newsapi.org/v2/everything?q=Detroit+crime&excludeDomains=freerepublic.com&from=2023-09-28&apiKey=485c738476824fd29586fbbda00f0cc3"
-
+news_url = "https://newsapi.org/v2/everything?q=" + city + "+crime&excludeDomains=freerepublic.com&from=2023-09-29&apiKey=" + apiKey
+print(news_url)
 # Crime keywords and their associated danger ratings
 crime_keywords = {
     "Rape": 5,
@@ -74,7 +86,7 @@ if response.status_code == 200:
     # Access and analyze the news data
     articles = news_data.get("articles", [])
 
-    for article in articles:
+    for index, article in enumerate(articles):
         title = article.get("title", "").lower()
         description = article.get("description", "").lower()
 
@@ -84,14 +96,36 @@ if response.status_code == 200:
             if keyword.lower() in title or keyword.lower() in description:
                 danger_rating += rating
 
+                # Assuming your date is in ISO 8601 format
+                date_string = article.get("publishedAt","")
+
+                # Convert the date string to a datetime object
+                published_at = datetime.fromisoformat(date_string).replace(tzinfo=timezone.utc)
+
+                # Get the current date and time
+                current_date = datetime.now(timezone.utc)
+
+                # Calculate the difference in days
+                difference = current_date - published_at
+
+                # Access the days component of the difference
+                days_ago = difference.days
+
+                # Assuming index and rating are defined
+                my_list.append((index, rating, days_ago))
+
+
+#datetime.utcnow()-datetime.fromisoformat(article.get("publishedAt",""))
+
         # If the article contains crime keywords, add its danger rating to the total
         if danger_rating > 0:
             total_danger_rating += danger_rating
             article_count += 1
 
+
     # Make a GET request to the city population API
-    city_name = 'Detroit'
-    city_api_url = 'https://api.api-ninjas.com/v1/city?name={}'.format(city_name)
+
+    city_api_url = 'https://api.api-ninjas.com/v1/city?name={}'.format(city)
     response = requests.get(city_api_url, headers={'X-Api-Key': 'MBLtSMUqzGZkqENlXZM7Zg==INiACq7u4cLZhRnE'})
 
     # Check if the city population request was successful (status code 200)
